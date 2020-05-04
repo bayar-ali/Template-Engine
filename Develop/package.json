@@ -1,5 +1,5 @@
 {
-  "name": "Develop",
+  "name": "homework",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -15,5 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^7.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.0"
   }
 }
