@@ -45,4 +45,4 @@ test("getRole() should return \"Employee\"", () => {
   const testValue = "Employee";
   const e = new Employee("Alice", 1, "test@test.com");
   expect(e.getRole()).toBe(testValue);
-}); 
+});

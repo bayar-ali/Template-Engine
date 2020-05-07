@@ -15,49 +15,58 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 function promptUser() {
     return inquirer.prompt([
-      // api call needed to retive data
       {
         type: "input",
-        name: "username",
-        message: ":",
+        name: "manager",
+        message: "What is your Manager Name:",
   
       },
       {
         type: "input",
         name: "name",
-        message: "?"
+        message: "What is Your Manger Id?"
       },
       {
         type: "input",
-        name: "description",
-        message: "?"
+        name: "Email",
+        message: "What is Your Manger Email?"
+      },
+      {
+        type: "input",
+        name: "Number",
+        message: "What is Your Office number"
+      },
+      {
+        type: "input",
+        name: "type",
+        message: "What Type of member would you like to add ?"
+      },
+      {
+        type: "input",
+        name: "E-name",
+        message: "What is Your engineer Name?"
+      },
+      {
+        type: "input",
+        name: "E-Id",
+        message: "what is Your Engineer ID?"
+      },
+      {
+        type: "input",
+        name: "E-Id",
+        message: "what is Your Engineer ID?"
+      },
+      {
+        type: "input",
+        name: "E-Id",
+        message: "what is Your Engineer ID?"
       },
       {
         type: "list",
           name: "license",
-          message: "What kind of licensing will your project have?",
-          choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD3', 'None']
-      },
-      {
-        type: "input",
-        name: "install",
-        message: "?"
-      },
-      {
-        type: "input",
-        name: "commands",
-        message: "?"
-      },
-      {
-        type: "input",
-        name: "usingrepo",
-        message: "?"
-      },
-      {
-        type: "input",
-        name: "contribute",
-        message: "?"
-      },
+          message: "which type of team member would you like to have?",
+          choices: ['Intern', 'Engineer']
+      }
   
     ])
   }
