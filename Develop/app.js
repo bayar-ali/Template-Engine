@@ -18,58 +18,108 @@ function promptUser() {
       {
         type: "input",
         name: "manager",
-        message: "What is your Manager Name:",
+        message: "What is your Employee Name:",
   
-      },
-      {
-        type: "input",
-        name: "name",
-        message: "What is Your Manger Id?"
-      },
-      {
-        type: "input",
-        name: "Email",
-        message: "What is Your Manger Email?"
-      },
-      {
-        type: "input",
-        name: "Number",
-        message: "What is Your Office number"
-      },
-      {
-        type: "input",
-        name: "type",
-        message: "What Type of member would you like to add ?"
-      },
-      {
-        type: "input",
-        name: "E-name",
-        message: "What is Your engineer Name?"
-      },
-      {
-        type: "input",
-        name: "E-Id",
-        message: "what is Your Engineer ID?"
-      },
-      {
-        type: "input",
-        name: "E-Id",
-        message: "what is Your Engineer ID?"
-      },
-      {
-        type: "input",
-        name: "E-Id",
-        message: "what is Your Engineer ID?"
       },
       {
         type: "list",
-          name: "license",
-          message: "which type of team member would you like to have?",
-          choices: ['Intern', 'Engineer']
+        name: "jobDescription",
+        message: "What role is your new employee joining?",
+        choices: ["manager", "Engineer", "Intern"]
       }
+      
   
     ])
   }
+
+promptUser()
+  .then((results) => {
+    console.log(results.jobDescription)
+    console.log(results.name)
+    switch (results.jobDescription) {
+      case 'Manager':
+        inquirer.prompt([{
+          type: "input",
+          name: "id",
+          message: "What is the Manager ID number?"
+        },
+        {
+        type: "input",
+        name: "email",
+        message: "What is the Manager Email?"
+        },
+        {
+          type: "input",
+          name: "managerNum",
+          message: "What is the Manager Office Number?"
+        }
+        ])
+
+        .then ((resultsManager)=> {
+          console.log(resultsManger.id)
+          const newMan = new Manager(results.name, resultsManager.id, resultsManager.email, resultsManager.managerNum)
+
+          fs.writeFile("manager.html", render([newMan]), (err) => {
+            if (err) throw (err)
+          })
+        })
+
+        break; 
+        case 'Engineer':
+          inquirer.prompt([{
+            type: "input",
+            name: "id",
+            message: "what is the Engineers ID number?"
+          },
+          {
+            type: "input",
+            name: "email",
+            message: "what is the Engineers Email?"
+          },
+          {
+            type: "input",
+            name: "engineerGitHub",
+            message: "what is the Engineers github account?"
+          }
+        
+        ])
+
+        break;
+        case 'Intern' :
+
+          inquirer.prompt([{
+            type: "input",
+            name: "id",
+            message: "what is the Intern's ID number?"
+          },
+          {
+            type: "input",
+            name: "email",
+            message: "what is the Intern's Email?"
+          },
+          {
+            type: "input",
+            name: "internSchool",
+            message: "what School did the intern go to?"
+          }
+        
+        ])
+
+        const newIntern = new Intern(`${name}` `${id}`, `${email}`, `${internSchool}`)
+
+        return [jobDescription.id, jobDescription.email, jobDescription.internSchool]
+
+    }
+  })
+
+  .then(() => {
+
+  })
+  .then(() => {
+    
+  })
+
+  
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!

@@ -2,13 +2,12 @@
 const Employee = require("./Employee");
 
 
-// creating a class  from employee
-class Employee extends Intern {
-    constructor(name, id, email, school) {
+// creating a class inhierat from employee
+function Intern(name, id, email, school) {
         Employee.call(this,name, id, email)
         this.role = "Intern"; 
         this.school = school; 
-    }
+    
 
 }
 

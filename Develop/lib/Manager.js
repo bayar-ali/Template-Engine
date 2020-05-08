@@ -1,13 +1,12 @@
 // TODO: Write code to define and export the Engineer class.  HINT: This class should inherit from Employee
 const Employee = require("./Employee")
 
-class Employee extends Manager {
-    constructor(name, email, id, officeNumber) {
+function Manager(name, email, id, officeNumber) {
         Employee.call(this, name, id, email)
         this.role = "Manager"; 
         this.officeNumber = officeNumber; 
     }
-}
+
 
 Manager.prototype = Object.create(Employee.prototype)
 

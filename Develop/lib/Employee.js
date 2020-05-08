@@ -1,14 +1,13 @@
 // TODO: Write code to define and export the Employee class
 
-class Employee {
-    constructor(name, email, id) {
+function Employee(name, email, id) {
         this.name = name;
         this.id = email; 
         this.email = id; 
         this.role = "employee"; 
     }
     
-}
+
 
 Employee.prototype.getName = function getName() {
     return this.name
