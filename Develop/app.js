@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRender");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -25,7 +25,7 @@ function promptUser() {
         type: "list",
         name: "jobDescription",
         message: "What role is your new employee joining?",
-        choices: ["manager", "Engineer", "Intern"]
+        choices: ["Manager", "Engineer", "Intern"]
       }
       
   
@@ -56,7 +56,7 @@ promptUser()
         ])
 
         .then ((resultsManager)=> {
-          console.log(resultsManger.id)
+          console.log(resultsManager.id)
           const newMan = new Manager(results.name, resultsManager.id, resultsManager.email, resultsManager.managerNum)
 
           fs.writeFile("manager.html", render([newMan]), (err) => {
@@ -105,11 +105,12 @@ promptUser()
         
         ])
 
-        const newIntern = new Intern(`${name}` `${id}`, `${email}`, `${internSchool}`)
+        const newIntern = new Intern(`${name}`, `${id}`, `${email}`, `${internSchool}`)
 
         return [jobDescription.id, jobDescription.email, jobDescription.internSchool]
 
     }
+
   })
 
   .then(() => {
