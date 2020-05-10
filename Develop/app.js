@@ -13,7 +13,7 @@ let managerList = [];
 let engineerList = []; 
 let internList = []; 
 
-const render = require("./lib/htmlRender");
+const rendering = require("./lib/htmlRender");
 
 
 function promptUser() {
@@ -56,11 +56,11 @@ function promptUser() {
         ])
 
         .then ((resultsManager)=> {
-          console.log(resultsManager.id)
+
           const newMan = new Manager(results.name, resultsManager.id, resultsManager.email, resultsManager.managerNum)
              
            managerList.push(newMan)
-          fs.writeFile("manager.html", render([newMan]), (err) => {
+          fs.writeFile("manager.html", rendering([newMan]), (err) => {
             if (err) throw (err)
           })
         })
@@ -84,15 +84,15 @@ function promptUser() {
           }
         
         ])
-            .then((resultsEnigneer) => {
-              const newEngineer = new Engineer(results.name, resultsEngineer.id, resultsEnigneer.email, resultsEnigneer.engineerGitHub)
+          .then((resultsEnigneer) => {
+            const newEngineer = new Engineer(results.name, resultsEngineer.id, resultsEnigneer.email, resultsEnigneer.engineerGitHub);
 
-              fs.appendFile("newengineer.htm", render([newEngineer]), (err) => {
-                if (err) throw (err)
-              })
-            }
+            engineerList.push(newEngineer)
 
-            )
+          
+
+          });
+          
 
         break;
         case 'Intern' :
@@ -116,8 +116,9 @@ function promptUser() {
           ])
             .then((resultsIntern) => {
               const newInt = new Intern(results.name, resultsIntern.id, resultsIntern.email, resultsIntern.internSchool)
-
-              fs.appendFile("newintern.html", render([newInt]), (err) => {
+             
+              internList.push(newInt)
+              fs.appendFile("newintern.html", rendering([newInt]), (err) => {
                 if (err) throw (err)
               })
             })
@@ -132,28 +133,7 @@ function promptUser() {
 promptUser()
 
 function listOfPeople() {
-  render(managerList)
-  render(engineerList)
-  render(internList)
+  rendering(managerList)
+  rendering(engineerList)
+  rendering(internList)
 }
-
-  
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
